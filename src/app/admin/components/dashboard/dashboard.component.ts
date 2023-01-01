@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent extends BaseComponent implements OnInit {
   constructor(private alertify: AlertifyService, spinner: NgxSpinnerService) {
@@ -22,11 +22,11 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   }
 
   m() {
-    this.alertify.message('Mess', {
+    this.alertify.message('Merhaba', {
       messageType: MessageType.Success,
       delay: 5,
       position: Position.TopRight,
-    });
+    })
   }
 
   d() {

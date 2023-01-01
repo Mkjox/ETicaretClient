@@ -59,15 +59,11 @@ export class DeleteDirective {
       afterClosed: async () => {
         this.spinner.show(SpinnerType.BallAtom);
         const td: HTMLTableCellElement = this.element.nativeElement;
-        this.httpClientService
-          .delete(
+        this.httpClientService.delete(
             {
               controller: this.controller,
             },
-            this.id
-          )
-          .subscribe(
-            (data) => {
+            this.id).subscribe(data => {
               $(td.parentElement).animate(
                 {
                   opacity: 0,
@@ -77,11 +73,11 @@ export class DeleteDirective {
                 700,
                 () => {
                   this.callback.emit();
-                  this.alertifyService.message('Ürün başarıyla silinmiştir.', {
+                  this.alertifyService.message(`${this.controller == 'roles' ? 'Rol' : 'Ürün'} başarıyla silinmiştir.`, {
                     dismissOthers: true,
                     messageType: MessageType.Success,
                     position: Position.TopRight,
-                  });
+                  })
                 }
               );
             },
@@ -97,7 +93,7 @@ export class DeleteDirective {
               );
             }
           );
-      },
+      }
     });
   }
 

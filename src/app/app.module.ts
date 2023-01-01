@@ -13,6 +13,7 @@ import { DeleteDirective } from './directives/admin/delete.directive';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { FileUploadComponent } from './services/common/file-upload/file-upload.component';
 import { FileUploadDialogComponent } from './dialogs/file-upload-dialog/file-upload-dialog.component';
+import { FileUploadModule } from './services/common/file-upload/file-upload.module';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,10 @@ import { FileUploadDialogComponent } from './dialogs/file-upload-dialog/file-upl
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AdminModule,
     UiModule,
-    BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
     HttpClientModule

@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   declarations: [CustomersComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: '', component: CustomersComponent }]),
-  ],
+    RouterModule.forChild([{ path: '', component: CustomersComponent }])
+  ]
 })
 export class CustomersModule {}

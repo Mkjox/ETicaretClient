@@ -15,6 +15,7 @@ import { ProductService } from 'src/app/services/common/models/product.service';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss'],
 })
+
 export class CreateComponent extends BaseComponent implements OnInit {
   constructor(
     spinner: NgxSpinnerService,
@@ -29,13 +30,13 @@ export class CreateComponent extends BaseComponent implements OnInit {
   }
 
   @Output() createdProduct: EventEmitter<Create_Product> = new EventEmitter();
-  @Output() fileUploadOptions: Partial<FileUploadOptions> = {
-    action: "upload",
-    controller: "products",
-    explanation: "Resimleri sürükleyin veya seçin.",
-    isAdminPage: true,
-    accept: ".png, .jpg, .jpeg, .json"
-  };
+  // @Output() fileUploadOptions: Partial<FileUploadOptions> = {
+  //   action: "upload",
+  //   controller: "products",
+  //   explanation: "Resimleri sürükleyin veya seçin.",
+  //   isAdminPage: true,
+  //   accept: ".png, .jpg, .jpeg, .json"
+  // };
 
   create(
     name: HTMLInputElement,
@@ -48,7 +49,6 @@ export class CreateComponent extends BaseComponent implements OnInit {
     create_product.stock = parseInt(stock.value);
     create_product.price = parseFloat(price.value);
 
-
     this.productService.create(
       create_product,
       () => {
@@ -60,7 +60,7 @@ export class CreateComponent extends BaseComponent implements OnInit {
         });
         this.createdProduct.emit(create_product);
       },
-      (errorMessage) => {
+      errorMessage => {
         this.alertify.message(errorMessage, {
           dismissOthers: true,
           messageType: MessageType.Error,

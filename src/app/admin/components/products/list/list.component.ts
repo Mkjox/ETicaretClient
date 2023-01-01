@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,6 +9,7 @@ import {
   MessageType,
   Position,
 } from 'src/app/services/admin/alertify.service';
+import { DialogService } from 'src/app/services/common/dialog.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
 
 declare var $: any;
@@ -22,7 +23,8 @@ export class ListComponent extends BaseComponent implements OnInit {
   constructor(
     spinner: NgxSpinnerService,
     private productService: ProductService,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
+    private dialogService: DialogService
   ) {
     super(spinner);
   }
@@ -58,6 +60,16 @@ export class ListComponent extends BaseComponent implements OnInit {
     );
     this.paginator.length = allProducts.totalCount;
   }
+
+  // addProductImages(id: string) {
+  //   this.dialogService.openDialog({
+  //     componentType: SelectedProductImageDialogComponent,
+  //     data: id,
+  //     options: {
+  //       width: "1400px"
+  //     }
+  //   });
+  // }
 
   // delete(id, event) {
   //   const img: HTMLImageElement = event.srcElement;
