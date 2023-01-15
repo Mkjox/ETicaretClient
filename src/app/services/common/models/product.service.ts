@@ -22,9 +22,8 @@ export class ProductService {
           controller: 'products',
         },
         product
-      )
-      .subscribe(
-        (result) => {
+      ).subscribe(
+        result => {
           successCallBack();
         },
         (errorResponse: HttpErrorResponse) => {
@@ -54,11 +53,10 @@ export class ProductService {
       .get<{ totalCount: number; products: List_Product[] }>({
         controller: 'products',
         queryString: `page=${page}&size=${size}`,
-      })
-      .toPromise();
+      }).toPromise();
 
     promiseData
-      .then((d) => successCallBack())
+      .then(d => successCallBack())
       .catch((errorResponse: HttpErrorResponse) =>
         errorCallBack(errorResponse.message)
       );
