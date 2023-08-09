@@ -9,7 +9,7 @@ import { HttpClientService } from '../http-client.service';
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private httpClientService: HttpClientService) {}
+  constructor(private httpClientService: HttpClientService) { }
 
   create(
     product: Create_Product,
@@ -23,8 +23,8 @@ export class ProductService {
         },
         product
       ).subscribe(
-        result => {
-          successCallBack();
+        result => {() =>
+          successCallBack?.();
         },
         (errorResponse: HttpErrorResponse) => {
           const _error: Array<{ key: string; value: Array<string> }> =
@@ -35,30 +35,26 @@ export class ProductService {
               message += `${_v}<br>`;
             });
           });
-          errorCallBack(message);
+          errorCallBack?.(message);
         }
       );
   }
 
-  async read(
-    page: number = 0,
+  async read(page: number = 0,
     size: number = 5,
     successCallBack?: () => void,
-    errorCallBack?: (errorMessage: string) => void
-  ): Promise<{ totalCount: number; products: List_Product[] }> {
-    const promiseData: Promise<{
-      totalCount: number;
-      products: List_Product[];
-    }> = this.httpClientService
-      .get<{ totalCount: number; products: List_Product[] }>({
-        controller: 'products',
-        queryString: `page=${page}&size=${size}`,
-      }).toPromise();
+    errorCallBack?: (errorMessage: string) => void): Promise<{ totalCount: number;
+      products: List_Product[] }> {
+    const promiseData: Promise<{ totalCount: number; products: List_Product[] }>
+    = this.httpClientService.get<{ totalCount: number; products: List_Product[] }>({
+      controller: "products",
+      queryString: `page=${page}&size=${size}`
+    }).toPromise();
 
     promiseData
-      .then(d => successCallBack())
+      .then(d => successCallBack?.())
       .catch((errorResponse: HttpErrorResponse) =>
-        errorCallBack(errorResponse.message)
+        errorCallBack?.(errorResponse.message)
       );
 
     return await promiseData;

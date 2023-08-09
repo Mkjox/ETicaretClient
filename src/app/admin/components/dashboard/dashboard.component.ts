@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { timer } from 'rxjs';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import {
   AlertifyService,
@@ -19,6 +20,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.showSpinner(SpinnerType.BallAtom);
+    this.hideSpinner;
   }
 
   m() {
